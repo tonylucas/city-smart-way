@@ -1,0 +1,12 @@
+<article class="full-news">
+
+  <h1 class="title-full-news">{{news.title}}</h1>
+  <img src="{{news.url}}" alt="" class="img-full-news">
+  <p class="paragraph-full-news" *ngFor="let paragraph of news.paragraphs">{{paragraph}}</p>
+  <div class="share-full-news">
+    <button type="button" class="button-share facebook"><i class="fa fa-facebook icon-share"></i></button>
+    <button type="button" class="button-share twitter"><i class="fa fa-twitter icon-share"></i></button>
+    <button type="button" class="button-share linkedin"><i class="fa fa-linkedin icon-share"></i></button>
+  </div>
+
+</article>

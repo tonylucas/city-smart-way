@@ -1,0 +1,33 @@
+$white: #FFF;
+$red: #C81629;
+
+.menu{
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 20;
+  width: 100%;
+  background-color: $white;
+}
+
+.link-menu{
+  width: 25%;
+  padding: 7px 10px 8px;
+  font-size: 10px;
+  line-height: 10px;
+  text-align: center;
+  transition: all 500ms ease 0ms;
+  &:hover{
+    color: $white;
+    background-color: $red;
+  }
+}
+
+.icon-menu{
+  display: block;
+  margin-bottom: 2px;
+  font-size: 20px;
+  line-height: 20px;
+}
