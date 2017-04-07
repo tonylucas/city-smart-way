@@ -1,0 +1,14 @@
+<section class="slider">
+    <h2 [textContent]="push?.title" class="title-slider"></h2>
+    <swiper [config]="config">
+        <div class="swiper-wrapper">
+            <div *ngFor="let offer of push?.offers; let id = index" class="swiper-slide">
+                <div (click)="redirect(push?.key, id)" class="push-slider">
+                    <h3 [textContent]="offer.title" class="title-push"></h3>
+                    <span [textContent]="offer.price" class="price-push"></span>
+                    <img [src]="offer.img" alt="" class="img-push">
+                </div>
+            </div>
+        </div>
+    </swiper>
+</section>

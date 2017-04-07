@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>(Nom catégorie ?)</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <article class="offer">
+        <h1 [textContent]="offer?.title" class="title-offer"></h1>
+        <img [src]="offer?.img" alt="" class="img-offer">
+        <p [innerHtml]="paragraph" *ngFor="let paragraph of offer?.paragraphs" class="paragraph-offer"></p>
+        <div class="buy-offer">
+            <button type="button" class="button-buy">Buy</button>
+        </div>
+    </article>
+</ion-content>
