@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { LoadingController, Loading } from 'ionic-angular';
 
-import { HttpService } from '../shared/http.service';
-import { SectionOffer } from '../shared/model';
-const lastOffersUrl: String = '/lastOffers.json';
-const bestOffersUrl: String = '/bestOffers.json';
-const customOffersUrl: String = '/customOffers.json';
+import { ProductsProvider } from '../../providers/products';
+import { Offer } from '../../models/offer';
 
 @Component({
     selector: 'app-home',
@@ -14,25 +12,41 @@ const customOffersUrl: String = '/customOffers.json';
 
 export class HomeComponent implements OnInit {
 
-    lastOffers: SectionOffer;
-    bestOffers: SectionOffer;
-    customOffers: SectionOffer;
+    lastOffers: Offer[];
+    bestOffers: Offer[];
+    customOffers: Offer[];
+    loader: Loading;
+    loaderHidden: boolean = false;
 
-    constructor(private httpService: HttpService, public navCtrl: NavController) {
-        
+    constructor(
+        public navCtrl: NavController,
+        private productsProvider: ProductsProvider,
+        public loadingCtrl: LoadingController) {
+    }
+
+    presentLoading() {
+        this.loader = this.loadingCtrl.create({
+            content: "Chargement...",
+            // duration: 3000
+        });
+        this.loader.present();
     }
 
     ngOnInit() {
-        this.httpService.getData(lastOffersUrl).subscribe(response => {
-            this.lastOffers = response.json();
+        this.presentLoading();
+
+        this.productsProvider.getLastProducts().subscribe((response: Offer[]) => {
+            this.lastOffers = response;
+            this.loader.dismiss();
+            this.loaderHidden = true;
         });
 
-        this.httpService.getData(bestOffersUrl).subscribe(response => {
-            this.bestOffers = response.json();
-        });
-
-        this.httpService.getData(customOffersUrl).subscribe(response => {
-            this.customOffers = response.json();
-        });
+        // this.httpService.getData(bestOffersUrl).subscribe(response => {
+        //     this.bestOffers = response.json();
+        // });
+        //
+        // this.httpService.getData(customOffersUrl).subscribe(response => {
+        //     this.customOffers = response.json();
+        // });
     }
 }

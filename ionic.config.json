@@ -1,7 +1,6 @@
 {
-    "name": "city-smart-way-ionic",
-    "app_id": "",
-    "v2": true,
-    "typescript": true,
-    "defaultBrowser": "google chrome"
+  "name": "city-smart-way-ionic",
+  "app_id": "",
+  "defaultBrowser": "google chrome",
+  "type": "ionic-angular"
 }

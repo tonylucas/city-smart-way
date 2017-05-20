@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 
-import { HttpService } from '../shared/http.service';
-import { Offer } from '../shared/model';
-
-const lastOffersUrl: String = '/lastOffers/offers/';
-const format: String = '.json';
+import { HttpService } from '../../providers/http.service';
+import { CartService } from '../../providers/cart';
+import { Offer } from '../../models/offer';
+import { CartModal } from '../modal-cart/modal-cart.component';
 
 @Component({
     selector: 'app-offer',
@@ -17,11 +16,24 @@ export class OfferComponent implements OnInit {
     id: string;
     offer: Offer;
 
-    // constructor(private route: ActivatedRoute, private httpService: HttpService, public navCtrl: NavController) { }
-    constructor(private httpService: HttpService, public navCtrl: NavController, public navParams: NavParams) { }
+    nbPersons: number = 1;
+    nbChildren: number = 0;
+    date;
+    cartModal;
+
+    config: Object = {
+        autoHeight: true
+    };
+
+    constructor(
+        public modalCtrl: ModalController,
+        private httpService: HttpService,
+        public navCtrl: NavController,
+        public navParams: NavParams,
+        public cart: CartService) { }
 
     ngOnInit() {
-        this.id = this.navParams.get('offerId')
+        this.offer = this.navParams.get('offer')
         // this.route.params.subscribe(params => {
         //     this.id = params['id'];
         //
@@ -30,8 +42,27 @@ export class OfferComponent implements OnInit {
         //     });
         // });
 
-        this.httpService.getData(lastOffersUrl + this.id + format).subscribe(response => {
-            this.offer = response.json();
-        });
+        // this.httpService.getData(lastOffersUrl + this.id + format).subscribe(response => {
+        //     this.offer = response.json();
+        // });
+    }
+
+    presentModal() {
+        this.cartModal = this.modalCtrl.create(CartModal);
+        this.cartModal.present();
+    }
+
+    dismissModal() {
+        this.cartModal.dismiss();
+    }
+
+    addToCart(product) {
+        let cartItem = product;
+        cartItem.chosen_date = this.date;
+        cartItem.persons = this.nbPersons;
+        console.log(cartItem);
+        this.cart.addItem(cartItem);
+
+        this.presentModal();
     }
 }

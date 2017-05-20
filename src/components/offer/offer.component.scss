@@ -1,35 +1,45 @@
 $white: #FFF;
 $red: #C81629;
 
-.offer{
-  margin: 15px;
-  border-radius: 4px;
-  background-color: $white;
+.offer {
+    margin: 15px;
+    border-radius: 4px;
+    background-color: $white;
 }
 
-.title-offer{
-  padding: 10px;
-  font-size: 20px;
-  line-height: 24px;
+.title-offer {
+    // padding: 10px;
+    font-size: 20px;
 }
 
-.paragraph-offer{
-  padding: 10px;
-  font-size: 16px;
-  line-height: 24px;
+.paragraph-offer {
+    padding: 10px;
+    font-size: 16px;
+    line-height: 24px;
 }
 
-.buy-offer{
-  margin-top: 10px;
+.buy-offer {
+    margin-top: 10px;
 }
 
-.button-buy{
-  width: 100%;
-  padding: 6px;
-  border-radius: 0 0 4px 4px;
-  font-size: 16px;
-  line-height: 24px;
-  color: $white;
-  background-color: $red;
-  cursor: pointer;
+.button-buy {
+    width: 100%;
+    padding: 6px;
+    border-radius: 0 0 4px 4px;
+    font-size: 16px;
+    line-height: 24px;
+    color: $white;
+    background-color: $red;
+    cursor: pointer;
+}
+
+.swiper-slide {
+    padding: 0 5px;
+    img {
+        border-radius: 5px;
+        display: block;
+    }
+    figure {
+        margin: 0;
+    }
 }

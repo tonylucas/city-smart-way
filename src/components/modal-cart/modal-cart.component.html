@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons start>
+            <button (click)="dismiss()" ion-button icon-only color="dark">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </ion-buttons>
+
+        <ion-title>Panier</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngIf="!cart.length">
+        <ion-item>
+            <p>Votre panier est actuellement vide.</p>
+        </ion-item>
+    </ion-card>
+
+    <ion-card *ngFor="let item of cart; let id = index" [@flyInOut]="'in'">
+
+        <ion-item>
+            <h2 [textContent]="item.name"></h2>
+            <p [textContent]="item.chosen_date"></p>
+        </ion-item>
+
+        <ion-card-content>
+            <thumbnail-img [src]="item.images[0].src" [class]="" [alt]="item.images[0].alt"></thumbnail-img>
+            <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+        </ion-card-content>
+
+        <ion-item>
+            <span item-left>{{item.persons}} personne<span *ngIf="item.persons > 1">s</span></span>
+            <span item-left *ngIf="item.children">{{item.children}} enfant<span *ngIf="item.children > 1">s</span></span>
+            <button ion-button icon-left clear item-right (click)="deleteItem(id)">
+                <ion-icon name="trash"></ion-icon>
+           </button>
+        </ion-item>
+    </ion-card>
+
+    <button ion-button block (click)="proceedOrder()" *ngIf="cart.length">
+        Procéder à la commande
+    </button>
+
+
+</ion-content>

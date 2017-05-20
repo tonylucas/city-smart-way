@@ -1,16 +1,70 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>(Nom catégorie ?)</ion-title>
-    </ion-navbar>
+    <ion-toolbar>
+        <ion-buttons start>
+            <button ion-button icon-only color="royal">
+            <ion-icon name="search"></ion-icon>
+          </button>
+        </ion-buttons>
+
+        <ion-title>{{offer.categories[0].name}}</ion-title>
+
+        <ion-buttons end>
+            <button (click)="presentModal()" ion-button icon-only color="royal">
+            <ion-icon name="cart"></ion-icon>
+        </button>
+        </ion-buttons>
+
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <article class="offer">
-        <h1 [textContent]="offer?.title" class="title-offer"></h1>
-        <img [src]="offer?.img" alt="" class="img-offer">
-        <p [innerHtml]="paragraph" *ngFor="let paragraph of offer?.paragraphs" class="paragraph-offer"></p>
-        <div class="buy-offer">
-            <button type="button" class="button-buy">Buy</button>
-        </div>
+        <h1 [textContent]="offer?.name" class="title-offer"></h1>
+        <!-- <img [src]="offer.images[0].src" [alt]="offer.images[0].alt" class="img-offer"> -->
+
+
+        <swiper [config]="config">
+            <div class="swiper-wrapper">
+                <div *ngFor="let img of offer.images; let id = index" class="swiper-slide">
+                    <figure>
+                        <img [src]="img.src" [alt]="img.alt" class="img-offer">
+                        <figcaption [textContent]="img.alt"></figcaption>
+                    </figure>
+                </div>
+            </div>
+        </swiper>
+
+        <p [innerHtml]="offer.short_description" class="paragraph-offer"></p>
+
+
+        <ion-list>
+            <ion-list-header>
+                Nombre de participants
+                <ion-badge item-right>{{nbPersons}}</ion-badge>
+            </ion-list-header>
+            <ion-item>
+                <ion-range min="1" max="20" step="1" snaps="true" [(ngModel)]="nbPersons">
+                    <ion-label range-left>
+                        <ion-icon name="person"></ion-icon>
+                    </ion-label>
+                    <ion-label range-right>
+                        <ion-icon name="people"></ion-icon>
+                    </ion-label>
+                </ion-range>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Date</ion-label>
+                <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="date"></ion-datetime>
+            </ion-item>
+        </ion-list>
+
+
+        <button ion-button block (click)="addToCart(offer)"
+        [disabled]="!date">
+            <ion-icon name="cart"></ion-icon>
+            &nbsp;Ajouter au panier
+        </button>
+
     </article>
 </ion-content>

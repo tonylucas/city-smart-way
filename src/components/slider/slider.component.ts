@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { OfferComponent } from '../offer/offer.component';
-import { SectionOffer } from '../shared/model';
+import { Offer } from '../../models/offer';
+import { ThumbnailImgDirective } from '../../directives/thumbnail-img';
 
 @Component({
     selector: 'app-slider',
@@ -11,7 +12,7 @@ import { SectionOffer } from '../shared/model';
 export class SliderComponent {
 
     config: Object = {
-        slidesPerView: 4,
+        slidesPerView: 5,
         spaceBetween: 15,
         breakpoints: {
             768: {
@@ -26,16 +27,15 @@ export class SliderComponent {
         }
     };
 
-    @Input() push: SectionOffer;
+    @Input() push: Offer[];
+    @Input() title: String;
 
     constructor(public navCtrl: NavController) {}
 
-    redirect(key: String, id: Number) {
-        console.log(key);
-        // this.router.navigate(['offer', id]);
+    // redirect(key: String, id: Number) {
+    redirect(offer: Offer) {
         this.navCtrl.push(OfferComponent, {
-            offerId: id,
-            test: "coucou"
+            offer: offer
         });
     }
 }

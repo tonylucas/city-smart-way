@@ -1,15 +1,16 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Titre</ion-title>
+        <ion-title>{{lastPost.category}}</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
     <article class="full-news">
 
-        <h1 class="title-full-news">{{news.title}}</h1>
-        <img src="{{news.url}}" alt="" class="img-full-news">
-        <p class="paragraph-full-news" *ngFor="let paragraph of news.paragraphs">{{paragraph}}</p>
+        <h1 class="title-full-news" [textContent]="lastPost.title.rendered"></h1>
+        <img [src]="lastPost.featured_media_src" [alt]="lastPost.featured_media_alt" class="img-full-news">
+        <p class="paragraph-full-news" [innerHTML]="lastPost.content.rendered"></p>
+
         <div class="share-full-news">
             <button type="button" class="button-share facebook"><i class="fa fa-facebook icon-share"></i></button>
             <button type="button" class="button-share twitter"><i class="fa fa-twitter icon-share"></i></button>

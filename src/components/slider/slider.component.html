@@ -1,14 +1,22 @@
 <section class="slider">
-    <h2 [textContent]="push?.title" class="title-slider"></h2>
+
+    <h2 [textContent]="title" class="title-slider"></h2>
+
     <swiper [config]="config">
         <div class="swiper-wrapper">
-            <div *ngFor="let offer of push?.offers; let id = index" class="swiper-slide">
-                <div (click)="redirect(push?.key, id)" class="push-slider">
-                    <h3 [textContent]="offer.title" class="title-push"></h3>
-                    <span [textContent]="offer.price" class="price-push"></span>
-                    <img [src]="offer.img" alt="" class="img-push">
+
+            <template ngFor let-offer [ngForOf]="push" let-i="index">
+                <div class="swiper-slide" *ngIf="offer.status == 'publish'">
+                    <div (click)="redirect(offer)" class="push-slider">
+                        <thumbnail-img [src]="offer.images[0].src" [alt]="offer.images[0].alt" class="img-push"></thumbnail-img>
+                        <p [textContent]="offer.categories[0].name" class="cat-push"></p>
+                        <p [textContent]="offer.name" class="title-push"></p>
+                        <p [innerHTML]="'À partir de ' + offer.price_html" class="price-push"></p>
+                    </div>
                 </div>
-            </div>
+            </template>
+
         </div>
     </swiper>
+
 </section>

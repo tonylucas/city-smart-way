@@ -3,8 +3,8 @@
     <h2 class="title-news">Le savais-tu ?</h2>
 
     <article class="article-news" (click)="redirect()">
-        <h1 class="title-article" [textContent]="title"></h1>
-        <img [src]="img" alt="" class="img-article">
+        <h1 class="title-article" [textContent]="lastPost?.title.rendered"></h1>
+        <img [src]="lastPost?.featured_media_src" [alt]="lastPost?.featured_media_alt" class="img-article">
     </article>
 
 </section>

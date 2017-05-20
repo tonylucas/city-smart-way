@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FullNewsComponent } from '../full-news/full-news.component';
+import { PostsProvider } from '../../providers/posts.provider';
+import { MediaProvider } from '../../providers/media.provider';
+import { CategoryProvider } from '../../providers/category';
+import { Post } from '../../models/post';
+import { Media } from '../../models/media';
+import { Category } from '../../models/category';
 
 @Component({
     selector: 'app-news',
@@ -9,16 +15,33 @@ import { FullNewsComponent } from '../full-news/full-news.component';
 
 export class NewsComponent {
 
-    title: String;
-    img: String;
+    lastPost: Post;
 
-    constructor(public navCtrl: NavController) {
-        this.title = 'La flamme de l’Alma n’est pas une bougie pour Diana';
-        this.img = 'assets/img/news/flamme-de-alma.jpg';
+    constructor(
+        public navCtrl: NavController,
+        private postsProvider: PostsProvider,
+        private mediaProvider: MediaProvider,
+        private categoryProvider: CategoryProvider) {
     }
 
+    ngOnInit() {
+        this.postsProvider.getLastPost().subscribe((response: Post) => {
+            this.lastPost = response[0];
+            this.mediaProvider.getMediaById(this.lastPost.featured_media).subscribe((response: Media) => {
+                this.lastPost.featured_media_src = response.media_details.sizes.shop_single.source_url;
+                this.lastPost.featured_media_alt = response.alt_text;
+            });
+            this.categoryProvider.getCategoryById(this.lastPost.categories[0]).subscribe((response: Category) => {
+                this.lastPost.category = response.name;
+            });
+        });
+    }
+
+
+
     redirect() {
-        // this.router.navigate(['full-news']);
-        this.navCtrl.push(FullNewsComponent);
+        this.navCtrl.push(FullNewsComponent, {
+            lastPost: this.lastPost
+        });
     }
 }
