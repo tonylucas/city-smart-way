@@ -90,6 +90,7 @@ import {APP_BASE_HREF} from '@angular/common';
         MediaProvider,
         CategoryProvider,
         CartService,
+        CartModalService,
         StatusBar,
         SplashScreen,
         { provide: ErrorHandler, useClass: IonicErrorHandler },

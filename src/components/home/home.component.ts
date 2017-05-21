@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
     customOffers: Offer[];
     loader: Loading;
     loaderHidden: boolean = false;
+    headerData: any;
 
     constructor(
         public navCtrl: NavController,
@@ -26,19 +27,26 @@ export class HomeComponent implements OnInit {
 
     presentLoading() {
         this.loader = this.loadingCtrl.create({
-            content: "Chargement...",
-            // duration: 3000
+            content: "Chargement..."
         });
         this.loader.present();
     }
 
     ngOnInit() {
+        this.headerData = {
+            showCart: true,
+            showSearch: true,
+            isHome: true,
+            title: "City Smart Way"
+        };
+
         this.presentLoading();
 
         this.productsProvider.getLastProducts().subscribe((response: Offer[]) => {
             this.lastOffers = response;
             this.loader.dismiss();
             this.loaderHidden = true;
+            console.log(this.lastOffers);
         });
 
         // this.httpService.getData(bestOffersUrl).subscribe(response => {

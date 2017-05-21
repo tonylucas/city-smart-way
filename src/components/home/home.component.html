@@ -1,14 +1,14 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>City Smart Way</ion-title>
-    </ion-navbar>
+    <toolbar [data]="headerData"></toolbar>
 </ion-header>
 
-<ion-content>
+
+<ion-content padding>
 
     <div [hidden]="!loaderHidden">
         <app-news></app-news>
 
+        <h1>Dernières visites</h1>
         <app-slider [push]="lastOffers"></app-slider>
 
         <app-slider [push]="bestOffers"></app-slider>
