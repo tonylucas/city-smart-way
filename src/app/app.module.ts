@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
+import { Intercom } from '@ionic-native/intercom';
 
 import { FirebaseConfig } from './app.firebaseConfig';
 import { SwiperModule } from '../../node_modules/angular2-useful-swiper';
@@ -93,6 +94,7 @@ import {APP_BASE_HREF} from '@angular/common';
         CartModalService,
         StatusBar,
         SplashScreen,
+        Intercom,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         { provide: APP_BASE_HREF, useValue: '/' }
     ]

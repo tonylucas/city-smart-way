@@ -1,6 +1,6 @@
 <ion-tabs selectedIndex="0">
     <ion-tab tabTitle="Offres" tabIcon="home" [root]="tab1Root"></ion-tab>
-    <ion-tab tabTitle="Contact" tabIcon="chatbubbles" [root]="tab2Root"></ion-tab>
+    <ion-tab tabTitle="Contact" tabIcon="chatbubbles" (ionSelect)="showChatModal()"></ion-tab>
     <ion-tab tabTitle="Ma visite" tabIcon="pin" [root]="tab3Root"></ion-tab>
     <ion-tab tabTitle="Profil" tabIcon="person" [root]="tab4Root"></ion-tab>
 </ion-tabs>
