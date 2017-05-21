@@ -1,0 +1,25 @@
+$white: #FFF;
+$black: #000;
+
+.group-form {
+    table-layout: fixed;
+    display: table;
+    width: 100%;
+    border: 1px solid orange;
+
+    & + .group-form {
+        margin-top: 20px;
+    }
+}
+
+.tag-form {
+    display: table-cell;
+    vertical-align: top;
+    width: 50%;
+}
+
+.field-form {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%;
+}
