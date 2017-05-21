@@ -5,7 +5,7 @@
     <swiper [config]="config">
         <div class="swiper-wrapper">
 
-            <template ngFor let-offer [ngForOf]="push" let-i="index">
+            <ng-template ngFor let-offer [ngForOf]="push" let-i="index">
                 <div class="swiper-slide" *ngIf="offer.status == 'publish'">
                     <div (click)="redirect(offer)" class="push-slider">
                         <thumbnail-img [src]="offer.images[0].src" [alt]="offer.images[0].alt" class="img-push"></thumbnail-img>
@@ -14,7 +14,7 @@
                         <p [innerHTML]="'À partir de ' + offer.price_html" class="price-push"></p>
                     </div>
                 </div>
-            </template>
+            </ng-template>
 
         </div>
     </swiper>
