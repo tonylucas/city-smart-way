@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { HttpService } from '../../providers/http.service';
-import { CartService } from '../../providers/cart';
+import { CartService } from '../../providers/cart.service';
+import { CartModalService } from '../../providers/cart-modal.service';
 import { Offer } from '../../models/offer';
-import { CartModal } from '../modal-cart/modal-cart.component';
+
 
 @Component({
     selector: 'app-offer',
@@ -19,21 +20,29 @@ export class OfferComponent implements OnInit {
     nbPersons: number = 1;
     nbChildren: number = 0;
     date;
-    cartModal;
-
+    headerData: any;
     config: Object = {
         autoHeight: true
     };
 
     constructor(
-        public modalCtrl: ModalController,
         private httpService: HttpService,
         public navCtrl: NavController,
         public navParams: NavParams,
-        public cart: CartService) { }
+        public cartModal: CartModalService,
+        public cartService: CartService
+    ) { }
 
     ngOnInit() {
-        this.offer = this.navParams.get('offer')
+        this.offer = this.navParams.get('offer');
+
+        this.headerData = {
+            showCart: true,
+            showSearch: true,
+            isHome: false,
+            title: this.offer.categories[0].name
+        };
+
         // this.route.params.subscribe(params => {
         //     this.id = params['id'];
         //
@@ -47,22 +56,23 @@ export class OfferComponent implements OnInit {
         // });
     }
 
-    presentModal() {
-        this.cartModal = this.modalCtrl.create(CartModal);
-        this.cartModal.present();
-    }
+    // presentModal() {
+        // this.cartModal = this.modalCtrl.create(CartModal);
+        // this.cart.present();
+        // this.cartModal.present();
+    // }
 
-    dismissModal() {
-        this.cartModal.dismiss();
-    }
+    // dismissModal() {
+        // this.cart.dismiss();
+        // this.cartModal.dismiss();
+    // }
 
     addToCart(product) {
         let cartItem = product;
         cartItem.chosen_date = this.date;
         cartItem.persons = this.nbPersons;
-        console.log(cartItem);
-        this.cart.addItem(cartItem);
+        this.cartService.addItem(cartItem);
 
-        this.presentModal();
+        this.cartModal.present();
     }
 }

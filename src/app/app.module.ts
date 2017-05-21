@@ -18,12 +18,13 @@ import { ProductsProvider } from '../providers/products';
 import { PostsProvider } from '../providers/posts.provider';
 import { MediaProvider } from '../providers/media.provider';
 import { CategoryProvider } from '../providers/category';
-import { CartService } from '../providers/cart';
+import { CartService } from '../providers/cart.service';
+import { CartModalService } from '../providers/cart-modal.service';
 
 
 import { AppComponent } from './app.component';
 import { TabsComponent } from '../components/tabs/tabs.component';
-import { YouComponent } from '../components/you/you.component';
+import { ProfileComponent } from '../components/profile/profile.component';
 import { HomeComponent } from '../components/home/home.component';
 import { NewsComponent } from '../components/news/news.component';
 import { OfferComponent } from '../components/offer/offer.component';
@@ -37,13 +38,14 @@ import { CartModal } from '../components/modal-cart/modal-cart.component';
 import { ThumbnailImgDirective } from '../directives/thumbnail-img';
 
 import {APP_BASE_HREF} from '@angular/common';
+import { ToolbarComponent } from '../components/toolbar/toolbar';
 
 
 @NgModule({
     declarations: [
         AppComponent,
         TabsComponent,
-        YouComponent,
+        ProfileComponent,
         HomeComponent,
         NewsComponent,
         OfferComponent,
@@ -53,7 +55,8 @@ import {APP_BASE_HREF} from '@angular/common';
         FullNewsComponent,
         NextVisitComponent,
         ThumbnailImgDirective,
-        CartModal
+        CartModal,
+        ToolbarComponent
     ],
     imports: [
         BrowserModule,
@@ -80,7 +83,7 @@ import {APP_BASE_HREF} from '@angular/common';
         OfferComponent,
         ContactComponent,
         NextVisitComponent,
-        YouComponent,
+        ProfileComponent,
         TabsComponent,
         CartModal
     ],

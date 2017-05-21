@@ -1,20 +1,5 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-buttons start>
-            <button ion-button icon-only color="royal">
-            <ion-icon name="search"></ion-icon>
-          </button>
-        </ion-buttons>
-
-        <ion-title>{{offer.categories[0].name}}</ion-title>
-
-        <ion-buttons end>
-            <button (click)="presentModal()" ion-button icon-only color="royal">
-            <ion-icon name="cart"></ion-icon>
-        </button>
-        </ion-buttons>
-
-    </ion-toolbar>
+    <toolbar [data]="headerData"></toolbar>
 </ion-header>
 
 <ion-content>

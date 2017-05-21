@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { CartService } from '../../providers/cart';
+import { Component } from '@angular/core';
+import { NavController, ModalController, NavParams } from 'ionic-angular';
+
 import { CartItem } from '../../models/cart-item';
 import { ThumbnailImgDirective } from '../../directives/thumbnail-img';
+import { CartService } from '../../providers/cart.service';
 
 import {
     trigger,
@@ -29,19 +30,16 @@ import {
     ]
 })
 
-export class CartModal implements OnInit {
+export class CartModal {
 
     public cart: CartItem[];
 
     constructor(
         public navCtrl: NavController,
+        public params: NavParams,
         public cartService: CartService
     ) {
-        this.cart = this.cartService.getCart();
-    }
-
-    ngOnInit() {
-
+        this.cart = params.get('cart');
     }
 
     dismiss() {
