@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Importer une réservation</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding no-scroll>
+
+    <p ion-text text-center color="dark">Importez une réservation faite sur un autre appareil</p>
+
+    <ion-item>
+        <ion-label floating>Numéro de réservation</ion-label>
+        <ion-input type="number" pattern="\d*" [(ngModel)]="bookingNb"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label floating>Nom associé</ion-label>
+        <ion-input type="text" [(ngModel)]="lastName"></ion-input>
+    </ion-item>
+
+    <div padding text-center>
+        <button ion-button block (click)="importBooking()">
+            Importer
+        </button>
+
+        <p [hidden]="!orderImportError">
+            <ion-icon name="sad" color="danger" text-center></ion-icon>
+            <br>La réservation n'existe pas
+        </p>
+
+    </div>
+
+
+</ion-content>

@@ -1,14 +1,11 @@
-import { Subject, Observable, Observer, BehaviorSubject } from 'rxjs';
-
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { CartItem } from '../models/cart-item';
-import { CartModal } from '../components/modal-cart/modal-cart.component';
 import { ModalController } from 'ionic-angular';
 
 @Injectable()
 export class CartService {
-    
+
     public cart: CartItem[];
     public cartModal;
 
@@ -46,6 +43,11 @@ export class CartService {
     deleteItem(index: number) {
         this.cart.splice(index, 1);
         this.saveCart();
+    }
+
+    proceedOrder() {
+        console.log('proceedOrder');
+        console.log(this.getCart());
     }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { HttpService } from '../../providers/http.service';
 import { CartService } from '../../providers/cart.service';

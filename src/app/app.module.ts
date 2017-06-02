@@ -14,12 +14,14 @@ import { FirebaseConfig } from './app.firebaseConfig';
 import { SwiperModule } from '../../node_modules/angular2-useful-swiper';
 
 import { HttpService } from '../providers/http.service';
-import { ProductsProvider } from '../providers/products';
+import { ProductsProvider } from '../providers/products.provider';
+import { OrdersProvider } from '../providers/orders.provider';
 import { PostsProvider } from '../providers/posts.provider';
 import { MediaProvider } from '../providers/media.provider';
 import { CategoryProvider } from '../providers/category';
 import { CartService } from '../providers/cart.service';
 import { CartModalService } from '../providers/cart-modal.service';
+import { DeepLinkProvider } from '../providers/deep-linkprovider.ts';
 
 
 import { AppComponent } from './app.component';
@@ -39,6 +41,7 @@ import { ThumbnailImgDirective } from '../directives/thumbnail-img';
 
 import {APP_BASE_HREF} from '@angular/common';
 import { ToolbarComponent } from '../components/toolbar/toolbar';
+import { ImportBookingComponent } from '../components/import-booking/import-booking.component';
 
 
 @NgModule({
@@ -56,7 +59,8 @@ import { ToolbarComponent } from '../components/toolbar/toolbar';
         NextVisitComponent,
         ThumbnailImgDirective,
         CartModal,
-        ToolbarComponent
+        ToolbarComponent,
+        ImportBookingComponent
     ],
     imports: [
         BrowserModule,
@@ -85,11 +89,13 @@ import { ToolbarComponent } from '../components/toolbar/toolbar';
         NextVisitComponent,
         ProfileComponent,
         TabsComponent,
-        CartModal
+        CartModal,
+        ImportBookingComponent
     ],
     providers: [
         HttpService,
         ProductsProvider,
+        OrdersProvider,
         PostsProvider,
         MediaProvider,
         CategoryProvider,
@@ -98,6 +104,7 @@ import { ToolbarComponent } from '../components/toolbar/toolbar';
         StatusBar,
         SplashScreen,
         Intercom,
+        DeepLinkProvider,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         { provide: APP_BASE_HREF, useValue: '/' }
     ]

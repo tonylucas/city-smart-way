@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoadingController, Loading } from 'ionic-angular';
 
-import { ProductsProvider } from '../../providers/products';
+import { ProductsProvider } from '../../providers/products.provider';
 import { Offer } from '../../models/offer';
 
 @Component({
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
             this.lastOffers = response;
             this.loader.dismiss();
             this.loaderHidden = true;
-            console.log(this.lastOffers);
+            // console.log(this.lastOffers);
         });
 
         // this.httpService.getData(bestOffersUrl).subscribe(response => {

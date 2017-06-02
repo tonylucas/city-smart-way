@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response} from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { environment } from '../environments/environment.ts';
-
-import { Category } from '../models/category';
 
 /*
   Generated class for the Media provider.

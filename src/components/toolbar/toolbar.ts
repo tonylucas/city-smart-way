@@ -1,5 +1,6 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CartModalService } from '../../providers/cart-modal.service';
+import { ImportBookingComponent } from '../import-booking/import-booking.component.ts';
 
 @Component({
     selector: 'toolbar',
@@ -8,10 +9,17 @@ import { CartModalService } from '../../providers/cart-modal.service';
 export class ToolbarComponent {
 
     @Input() data: any;
+    importBookingPage: any;
 
-    constructor(public cartModal: CartModalService) { }
+    constructor(
+        public cartModal: CartModalService,
+
+    ) {
+        this.importBookingPage = ImportBookingComponent;
+    }
 
     presentModal() {
         this.cartModal.present();
+
     }
 }

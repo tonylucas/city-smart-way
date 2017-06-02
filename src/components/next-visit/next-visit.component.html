@@ -2,8 +2,36 @@
     <toolbar [data]="headerData"></toolbar>
 </ion-header>
 
-<ion-content padding>
+
+
+
+<ion-content *ngIf="!order" no-scroll padding>
+    <div text-center vertical-center>
+        <h1><ion-icon name="pin"></ion-icon></h1>
+
+        <h1>Nous sommes heureux de vous revoir !</h1>
+
+        <p>Pour voir vos réservations, vous devez les importer en utilisant votre numéro de réservation ainsi que le nom associé.</p>
+
+        <div padding>
+            <button ion-button block [navPush]="importBookingPage">
+                Importer une réservation
+            </button>
+        </div>
+    </div>
+</ion-content>
+
+
+<ion-content padding [hidden]="!order">
     <section class="next-visit">
+
+
+        <div padding *ngFor="let product of order.line_items; let id = index">
+            <h2>{{product.name}}</h2>
+        </div>
+
+        <small>Réservation n°{{orderId}}</small>
+
         <article class="article-next-visit">
             <h1 class="title-article">Le crime au musée de la police</h1>
             <img src="assets/img/offers/offer1.jpg" class="img-article">
@@ -29,5 +57,10 @@
         <p class="paragraph-next-visit">
             Thierry is a licensed tour guide, an insatiable Paris lover and a writer of history books. As many Parisians – among the best ones –, he was not born in Paris but moved here by choice, as a student. He never left since.
         </p>
+        <div text-center>
+            <button ion-button color="danger" (click)="deleteBooking()" clear>
+                Supprimer
+            </button>
+        </div>
     </section>
 </ion-content>

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { CartItem } from '../../models/cart-item';
-import { ThumbnailImgDirective } from '../../directives/thumbnail-img';
 import { CartService } from '../../providers/cart.service';
 
 import {
@@ -49,5 +48,9 @@ export class CartModal {
     deleteItem(index) {
         console.log(index);
         this.cartService.deleteItem(index);
+    }
+
+    proceedOrder() {
+        this.cartService.proceedOrder();
     }
 }

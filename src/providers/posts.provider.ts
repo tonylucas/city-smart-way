@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response} from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { environment } from '../environments/environment.ts';
 
-import { Offer } from '../models/offer';
 
 /*
   Generated class for the Posts provider.
@@ -32,10 +31,20 @@ export class PostsProvider {
 
     // Get last (by date) post from the API
     getLastPost() {
+        console.log(this.lastPostUrl);
         return this.http.get(this.lastPostUrl)
-            .map((res: any) => {
-                return JSON.parse(res._body);
-            });
+            .map((res: any) => JSON.parse(res.json())[0]);
+        // .map((res: any) => {
+        //     return JSON.parse(JSON.parse(JSON.parse(res._body)));
+        // });
+
+        // return this.http.get(this.lastPostUrl)
+        // .map((res: Response) => res.json());
+        // .map((res: Response) => {
+        // res._body.json()
+        // console.log(res._body);
+        //     return JSON.parse(res._body);
+        // });
     }
 
     // Get 5 last (by date) posts from the API

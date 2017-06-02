@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from 'ionic-angular';
 
 import { HomeComponent } from '../home/home.component';
-import { ContactComponent } from '../contact/contact.component';
 import { NextVisitComponent } from '../next-visit/next-visit.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { Intercom } from '@ionic-native/intercom';
+
 
 declare var cordova: any;
 
@@ -15,21 +15,31 @@ declare var cordova: any;
 
 export class TabsComponent implements OnInit {
     tab1Root = HomeComponent;
-    tab2Root = ContactComponent;
     tab3Root = NextVisitComponent;
     tab4Root = ProfileComponent;
-    intercom: Intercom;
 
-    constructor(public plt: Platform) { }
+    constructor(public plt: Platform) {
+        this.plt.ready().then((readySource) => {
+            console.log('ready');
+            console.log(this.plt.platforms());
+            console.log(this.plt.versions());
 
-    ngOnInit() { }
+            if (this.plt.is('cordova')) {
+                cordova.plugins.intercom.registerIdentifiedUser({ email: "tony3lucas@hotmail.fr" });
+            }
+        });
+    }
+
+    ngOnInit() {
+
+    }
 
     showChatModal() {
-        if (this.plt.is('mobileweb')) {
-            alert('Uniquement disponible sur iOS ou Android')
-        } else {
-            cordova.plugins.intercom.registerIdentifiedUser({ email: "tony3lucas@hotmail.fr" });
+        if (this.plt.is('cordova')) {
+            console.log('showChatModal');
             cordova.plugins.intercom.displayMessenger();
+        } else {
+            alert('Intercom - Uniquement disponible sur iOS ou Android');
         }
     }
 }

@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { OfferComponent } from '../offer/offer.component';
 import { Offer } from '../../models/offer';
-import { ThumbnailImgDirective } from '../../directives/thumbnail-img';
 
 @Component({
     selector: 'app-slider',

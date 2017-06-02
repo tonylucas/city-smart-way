@@ -15,4 +15,10 @@
         </button>
     </ion-buttons>
 
+    <ion-buttons end *ngIf="data.showImportBooking">
+        <button ion-button icon-only color="royal" [navPush]="importBookingPage">
+            <ion-icon name="cloud-download-outline"></ion-icon>
+        </button>
+    </ion-buttons>
+
 </ion-toolbar>

@@ -1,11 +1,8 @@
-import { Subject, Observable, Observer, BehaviorSubject } from 'rxjs';
-
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
 import { CartItem } from '../models/cart-item';
-import { CartModal } from '../components/modal-cart/modal-cart.component';
 import { ModalController } from 'ionic-angular';
 import { CartService } from './cart.service';
+import { CartModal } from '../components/modal-cart/modal-cart.component';
 
 @Injectable()
 export class CartModalService {
